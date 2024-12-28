@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Комната для чтения</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #888888;
+            color: #000000;
+            text-align: center;
+        }
+        header {
+            background-color: #ffffff00;
+            color: #000000;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+        }
+
+        header img {
+            max-width: 100px;
+            margin-right: 20px;
+            cursor: pointer;
+        }
+        header h1 {
+            color: #000000;
+            margin: 0;
+            font-size: 24px;
+            flex-grow: 1; /* Занимает всю доступную ширину */
+            text-align: left; /* Выравнивание текста по левому краю */
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            z-index: -1;
+            background: url(write.jpg) center / cover no-repeat;
+        }
+        #avatar {
+            max-width: 50px;
+            border-radius: 50%;
+            margin-right: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        #avatar:hover {
+            max-width: 60px;
+            margin-right: 25px;
+        }
+        .rooms-container {
+            margin-top: 20px;
+            padding: 20px;
+        }
+
+        .room-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column; /* Размещаем элементы вертикально */
+            align-items: center;
+        }
+
+        .room-list li {
+            background-color: #ffffff;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            text-align: center;
+        }
+
+        .room-list li a {
+            text-decoration: none;
+            color: #000000;
+            display: block; /* Чтобы ссылка занимала всю область li */
+            transition: color 0.3s ease;
+        }
+        .room-list li a:hover {
+            color: #4CAF50;
+        }
+
+
+        .chat-container {
+            margin-top: 20px;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            display: none;
+            flex-direction: column;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #messages {
+            flex-grow: 1;
+            overflow-y: auto;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+            text-align: left;
+            height: 300px;
+        }
+
+        .message {
+            margin-bottom: 5px;
+        }
+
+        #input-container {
+           margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px; /* Расстояние между элементами ввода */
+        }
+
+        #message-input {
+            flex-grow: 1;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        #send-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #send-button:hover {
+            background-color: #45a049;
+        }
+        .join-room {
+        padding: 12px 24px;
+        margin: 10px;
+        font-size: 16px;
+        text-decoration: none;
+        color: #fff;
+        background-color: #4CAF50;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        }
+
+        .join-room:hover{
+            background-color: #45a049;
+        }
+        
+        .room-info {
+            text-align: left;
+            padding: 10px;
+            border-radius: 8px;
+            background-color: #fff;
+            display: inline-block;
+            margin: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+         /* Стили для кнопок "Вход" и "Регистрация" */
+        .button-login,
+        .button-reg {
+            padding: 12px 24px;
+            margin: 10px;
+            font-size: 16px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button-login:hover,
+        .button-reg:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <header onclick="window.location.href='main.html'">
+        <img src="./log.png" alt="Логотип">
+        <h1>Kaleidoscope Books </h1>
+         <a href="login.html" class="button-login">Вход</a>
+        <a href="registration.html" class="button-reg">Регистрация</a>
+        <a href="profile.php">
+            <img id="avatar" src="avatar.png" alt="Avatar">
+        </a>
+    </header>
+    
+    <div class="rooms-container">        
+        <div class="room-info">
+            <h2>Подключиться к комнате по ID</h2>
+            <input type="text" id="room-id-input" placeholder="Введите ID комнаты">
+            <button onclick="joinRoomById()" class="join-room">Подключиться</button>
+        </div>
+        <h2>Список комнат для чтения</h2>
+        <ul class="room-list" id="room-list">
+            <!-- Комнаты будут динамически добавлены сюда -->
+        </ul>
+
+    </div>
+    <div class="chat-container" id="chat-container">
+        <div id="messages">
+            <!-- Сообщения чата будут здесь -->
+        </div>
+        <div id="input-container">
+            <input type="text" id="message-input" placeholder="Введите сообщение">
+            <button id="send-button">Отправить</button>
+        </div>
+    </div>
+
+    <script>
+        // Пример данных о комнатах
+        const rooms = [
+            { id: 1, name: "Фантастика и фэнтези", users: 0 },
+            { id: 2, name: "Детективы", users: 0 },
+            { id: 3, name: "Современная проза", users: 0 },
+            { id: 4, name: "Исторические романы", users: 0 },
+            { id: 5, name: "Поэзия", users: 0 }
+        ];
+        let currentRoomId = null;
+        const chatContainer = document.getElementById('chat-container');
+        const messagesDiv = document.getElementById('messages');
+        const roomList = document.getElementById('room-list');
+        const messageInput = document.getElementById('message-input');
+        const sendButton = document.getElementById('send-button');
+
+         function displayRooms() {
+            roomList.innerHTML = "";
+            rooms.forEach(room => {
+                const li = document.createElement("li");
+                const link = document.createElement("a");
+                link.href = "#";
+                link.textContent = `${room.name} (ID: ${room.id}, участников: ${room.users})`;
+                link.onclick = () => joinRoom(room.id, room.name);
+                li.appendChild(link);
+                roomList.appendChild(li);
+            });
+        }
+
+        // Функция для подключения к комнате по ID
+         function joinRoomById() {
+            const roomIdInput = document.getElementById('room-id-input');
+            const roomId = parseInt(roomIdInput.value);
+            const room = rooms.find(r => r.id === roomId);
+            if (room) {
+                 joinRoom(roomId, room.name);
+            } else {
+                alert("Комната с таким ID не найдена!");
+            }
+              roomIdInput.value = "";
+         }
+
+
+        // Функция для присоединения к комнате
+        function joinRoom(roomId, roomName) {
+            if (currentRoomId !== null) {
+                 const prevRoomIndex = rooms.findIndex(room => room.id === currentRoomId);
+                if (prevRoomIndex !== -1) {
+                     rooms[prevRoomIndex].users = Math.max(0, rooms[prevRoomIndex].users - 1);
+                }
+            }
+            currentRoomId = roomId;
+             chatContainer.style.display = 'flex';
+            messagesDiv.innerHTML = `<p>Вы вошли в комнату: <b>${roomName}</b></p>`;
+        
+            // Находим индекс текущей комнаты в массиве и увеличиваем количество пользователей
+            const roomIndex = rooms.findIndex(room => room.id === currentRoomId);
+            if (roomIndex !== -1) {
+                 rooms[roomIndex].users++;
+            }
+           displayRooms(); // Обновляем список комнат
+        }
+
+
+    // Функция для отправки сообщения
+        function sendMessage() {
+            const message = messageInput.value;
+            if (message.trim() !== "") {
+                const messageElement = document.createElement('div');
+                messageElement.classList.add('message');
+                messageElement.textContent = `Вы: ${message}`;
+                messagesDiv.appendChild(messageElement);
+                messageInput.value = "";
+                messagesDiv.scrollTop = messagesDiv.scrollHeight; // Прокручиваем к последнему сообщению
+            }
+        }
+
+        sendButton.addEventListener('click', sendMessage);
+
+        messageInput.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                sendMessage();
+                event.preventDefault();
+             }
+        });
+
+        displayRooms();
+    </script>
+</body>
+</html>

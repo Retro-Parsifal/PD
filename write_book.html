@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Написать свою книгу</title>
+    <style>
+        /* Общие стили */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            background: url(write.jpg) center / cover no-repeat;
+            filter: blur(0px);
+        }
+
+        header {
+            background-color: #ffffff0a;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        header img {
+            max-width: 100px;
+            margin-right: 20px;
+            cursor: pointer;
+        }
+
+        header h1 {
+            color: #333;
+            margin: 0;
+            font-size: 24px;
+        }
+
+        /* Стили для формы написания книги */
+        .write-book-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff54;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .write-book-container h2 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        .write-book-container label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .write-book-container input[type="text"],
+        .write-book-container textarea {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 1px solid #d6d6d685;
+            border-radius: 4px;
+        }
+
+        .write-book-container textarea {
+            resize: vertical; /* Предотвращает изменение размера текстового поля в ширину */
+        }
+
+        .write-book-container input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 1px solid #c7c7c750;
+            border-radius: 4px;
+        }
+
+        .write-book-container button {
+            background-color: #6d6d6da2;
+            color: rgb(255, 255, 255);
+            padding: 10px 15px;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        .write-book-container button:hover {
+            background-color: #585858;
+        }
+    </style>
+</head>
+<body>
+    <header onclick="window.location.href='main.html'">
+        <img src="./log.png" alt="Логотип">
+        <h1>Kaleidoscope Books</h1>
+    </header>
+
+    <!-- Форма для написания книги -->
+    <div class="write-book-container">
+        <h2>Написать свою книгу</h2>
+        <form action="process_write_book.php" method="post" enctype="multipart/form-data">
+            <label for="book_author">Автор:</label>
+            <input type="text" id="book_author" name="book_author" required>
+
+            <label for="book_title">Заголовок книги:</label>
+            <input type="text" id="book_title" name="book_title" required>
+            
+            <label for="book_content">Текст книги:</label>
+            <textarea id="book_content" name="book_content" rows="10"></textarea>
+
+            <label for="docx_file">Загрузить файл (txt):</label>
+            <input type="file" id="docx_file" name="docx_file">
+         
+            <button type="submit">Сохранить книгу</button>
+        </form>
+    </div>
+</body>
+</html>

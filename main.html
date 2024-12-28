@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная страница для писателей</title>
+    <style>
+        /* Общие стили */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #888888;
+            text-align: center;
+        }
+
+        header {
+            background-color: #ffffff00;
+            color: #000000;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+        }
+
+        header img {
+            max-width: 100px;
+            margin-right: 20px;
+            cursor: pointer;
+        }
+
+        header h1 {
+            color: #000000;
+            margin: 0;
+            font-size: 24px;
+            flex-grow: 1;
+            text-align: left; 
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            z-index: -1;
+            background: url(write.jpg) center / cover no-repeat;
+        }
+        #avatar {
+            max-width: 50px;
+            border-radius: 50%;
+            margin-right: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        #avatar:hover {
+            max-width: 60px;
+            margin-right: 25px;
+        }
+
+        .button-container {
+            display: flex;
+            flex-wrap: wrap; /* Разбивает элементы на несколько строк */
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        /* Стили для кнопок главного меню */
+        .main-menu .button {
+            padding: 12px 40px; /* Измененные размеры кнопок */
+            margin: 10px 50px; /* Отступ между кнопками */
+            font-size: 18px;
+            text-decoration: none;
+            color: #000000;
+            background-color: #ffffff;
+            border: none;
+            border-radius: 7px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .main-menu .button:hover {
+            text-decoration: none;
+            color: #ffffff;
+            background-color: #000000;  
+        }
+
+        /* Стили для кнопок "Вход" и "Регистрация" */
+        .button-login,
+        .button-reg {
+            padding: 12px 24px;
+            margin: 10px;
+            font-size: 16px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button-login:hover,
+        .button-reg:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <header onclick="window.location.href='main.html'">
+        <img src="./log.png" alt="Логотип">
+        <h1>Kaleidoscope Books </h1>
+        <a href="login.html" class="button-login">Вход</a>
+        <a href="registration.html" class="button-reg">Регистрация</a>
+        <a href="profile.php">
+            <img id="avatar" src="avatar.png" alt="Avatar">
+        </a>
+    </header>
+    <h2 style="color:rgb(0, 0, 0)">Добро пожаловать, Писатель!</h2>
+    
+    <div class="button-container main-menu">
+        <a href="about_us.html" class="button">О нас</a>
+        <a href="articles.php" class="button">Статьи</a>
+        <a href="reading_room.html" class="button">Комната для чтения</a>
+        <a href="what_to_read.html" class="button">Рекомендации</a>
+        <a href="write_book.html" class="button">Написать свою книгу</a>
+        <a href="novelties.php" class="button">Книги наших писателей</a>
+    </div>
+</body>
+</html>    

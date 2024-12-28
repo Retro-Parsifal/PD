@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Что почитать</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffffee;
+            text-align: center;
+        }
+
+        header {
+            background-color: #ffffff00;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        header img {
+            max-width: 50px;
+            margin-right: 20px;
+            cursor: pointer;
+        }
+
+        header h1 {
+            color: #333;
+            margin: 0;
+            font-size: 24px;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            z-index: -1;
+            background: url(book.jpg) center / cover no-repeat;
+            filter: blur(5px);
+        }
+        h2 {
+            margin-top: 10px;
+            color: #333;
+            padding: 10px;
+        }
+
+        p {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <header onclick="window.location.href='main.html'">
+        <img src="./log.png" alt="Логотип">
+        <h1>Kaleidoscope Books</h1>
+    </header>
+    <h2>Что почитать</h2>
+        <marquee behavior="alternate" direction="left"> <img src="./books/book1.jpg" width="250"> 
+            <img src="./books/book2.jpg" width="250"/> <img src="./books/book3.jpg" width="250"/> <img src="./books/book4.jpg" width="250"/> <img src="./books/book5.jpg" width="250"/> 
+            <img src="./books/book6.jpg" width="250"/> <img src="./books/book7.jpg" width="250"/> <img src="./books/book8.jpg" width="250"/> <img src="./books/book9.jpg" width="250"/>
+            <img src="./books/book11.jpg" width="250"/> <img src="./books/book12.jpg" width="250"/> <img src="./books/book13.jpg" width="250"/> <img src="./books/book14.jpg" width="250"/> 
+            <img src="./books/book15.jpg" width="250"/> <img src="./books/book16.jpg" width="250"/> <img src="./books/book17.jpg" width="250"/> <img src="./books/book18.jpg" width="250"/> 
+        </marquee>
+    <h3></h3>
+        <marquee behavior="alternate" direction="right"> <img src="./books/book19.jpg" width="250"> 
+            <img src="./books/book20.jpg" width="250"/> <img src="./books/book37.jpg" width="250"/> <img src="./books/book22.jpg" width="250"/> <img src="./books/book23.jpg" width="250"/> 
+            <img src="./books/book24.jpg" width="250"/> <img src="./books/book25.jpg" width="250"/> <img src="./books/book38.jpg" width="250"/> <img src="./books/book27.jpg" width="250"/>
+            <img src="./books/book36.jpg" width="250"/> <img src="./books/book29.jpg" width="250"/> <img src="./books/book30.jpg" width="250"/> <img src="./books/book39.jpg" width="250"/> 
+            <img src="./books/book32.jpg" width="250"/> <img src="./books/book33.jpg" width="250"/> <img src="./books/book34.jpg" width="250"/> <img src="./books/book35.jpg" width="250"/> 
+        </marquee>
+    </body>
+</body>
+</html>
+

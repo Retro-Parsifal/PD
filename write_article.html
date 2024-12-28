@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Написать статью</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header img {
+            max-width: 100px;
+            margin-right: 20px;
+            cursor: pointer;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        header img {
+            max-width: 100px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        header h1 {
+            color: #333;
+            margin: 0;
+            font-size: 24px;
+        }
+
+        h2 {
+            margin-top: 20px;
+            color: #333;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        textarea {
+            height: 200px;
+            resize: vertical;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <header onclick="window.location.href='main.html'">
+        <img src="./log.png" alt="Логотип">
+        <h1>Kaleidoscope Books</h1>
+    </header>
+    <h2>Написать статью</h2>
+    
+    <!-- Форма для написания статьи -->
+    <form action="process_write_article.php" method="post">
+        <label for="article_title">Заголовок статьи:</label>
+        <input type="text" id="article_title" name="article_title" required>
+        
+        <label for="article_author">Автор:</label>
+        <input type="text" id="article_author" name="article_author" required>
+
+        <label for="article_content">Текст статьи:</label>
+        <textarea id="article_content" name="article_content" required></textarea>
+     
+        <button type="submit">Опубликовать статью</button>
+    </form>
+</body>
+</html>

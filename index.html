@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Отображение содержимого docx файла</title>
+</head>
+<body>
+
+    <input type="file" id="docxFileInput" accept=".docx">
+    <div id="output"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.0.1/mammoth.browser.min.js"></script>
+    <script>
+        document.getElementById('docxFileInput').addEventListener('change', function (event) {
+            var fileInput = event.target;
+            var file = fileInput.files[0];
+
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    var arrayBuffer = e.target.result;
+                    var uint8Array = new Uint8Array(arrayBuffer);
+                    var docxFile = new Blob([uint8Array], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
+
+                    mammoth.extractRawText({ arrayBuffer: uint8Array })
+                        .then(displayResult)
+                        .catch(handleError);
+                };
+                reader.readAsArrayBuffer(file);
+            }
+        });
+
+        function displayResult(result) {
+            var outputDiv = document.getElementById('output');
+            outputDiv.innerHTML = result.value;
+        }
+
+        function handleError(err) {
+            console.error(err);
+        }
+    </script>
+
+</body>
+</html>
